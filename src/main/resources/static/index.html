@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Baylan Guvenlik Servis Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<div class="container">
+  <form id="myForm">
+    <div class="row mt-4">
+      <div class="col-6">
+      </div>
+      <div class="col-3">
+        <div class="input-group">
+          <input type="text" class="form-control" id="tarih" placeholder="Tarih">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="input-group">
+          <input type="text" class="form-control" id="seriNo" placeholder="Seri No">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row mt-4">
+      <div class="col-8">
+        <input type="text" class="form-control" id="input1" placeholder="Firma Adı">
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control" id="input2" placeholder="Ilgili">
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <input type="text" class="form-control" id="input3" placeholder="Servis Yeri">
+      </div>
+      </div>
+    <div class="row mt-4">
+      <div class="col-8">
+        <input type="text" class="form-control" id="input4" placeholder="Adres">
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control" id="input5" placeholder="Tel">
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-8">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="checkbox1">
+          <label class="form-check-label" for="checkbox1">Sistem Teslim</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="checkbox2">
+          <label class="form-check-label" for="checkbox2">Arıza</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="checkbox3">
+          <label class="form-check-label" for="checkbox3">Bakım</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="checkbox4">
+          <label class="form-check-label" for="checkbox4">Periyodik Bakım</label>
+        </div>
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control" id="input6" placeholder="Diger">
+      </div>
+    </div>
+    <div class="row mt-4">
+      <b>BAKIM / ONARIM</b>
+    </div>
+    <div class="row mt-4">
+      <div class="col-2">
+        <label for="inputField" class="form-label">Bakimin Yapildigi Tarih</label>
+      </div>
+      <div class="col-10">
+        <input type="text" class="form-control" id="inputField" >
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-2">
+        <label for="inputField2" class="form-label">Bakimin Süresi</label>
+      </div>
+      <div class="col-10">
+        <input type="text" class="form-control" id="inputField2">
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-2">
+        <label for="inputField2" class="form-label">Bakimin Yapildigi Sistem</label>
+      </div>
+      <div class="col-10">
+        <input type="text" class="form-control" id="inputField3">
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-2">
+        <label for="inputField2" class="form-label">Bakimi Yapan</label>
+      </div>
+      <div class="col-10">
+        <input type="text" class="form-control" id="inputField4">
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-2">
+        <label for="inputField2" class="form-label">Bakima Nezaret Eden</label>
+      </div>
+      <div class="col-10">
+        <input type="text" class="form-control" id="inputField5">
+      </div>
+    </div>
+    <div class="form-group mb-4">
+      <label for="aciklama" class="mt-4 mb-4"><b>Açıklama</b></label>
+      <textarea class="form-control" id="aciklama" rows="4" placeholder="Buraya uzun açıklamanızı yazabilirsiniz..."></textarea>
+    </div>
+    <div class="row mt-4 mb-4" >
+      <div class="col-2">
+        <label for="inputField2" class="form-label">Isim -Soyisim</label>
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control" id="inputField6">
+      </div>
+      <div class="col-2">
+        <label for="inputField2" class="form-label">Musteri İsim -Soyisim</label>
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control" id="inputField7">
+      </div>
+    </div>
+    <canvas id="signatureCanvas1" width="300" height="200"></canvas>
+    <canvas id="signatureCanvas2" width="300" height="200"></canvas>
+
+    <button id="clearButton1" class="btn btn-secondary mt-3 mb-3 ml-2">Temizle</button>
+    <div class="row mt-4 mb-4" >
+    <button type="button" onclick="submitForm()">Gönder</button>
+    </div>
+  </form>
+
+
+</div>
+</body>
+<script>
+  function submitForm() {
+    var canvasSig1 = document.getElementById("signatureCanvas1");
+    var canvasSig2 = document.getElementById("signatureCanvas2");
+    var signatureData1 = canvasSig1.toDataURL("image/png");
+    var signatureData2 = canvasSig2.toDataURL("image/png");
+    var inputField1 = document.getElementById("input1").value;
+    var inputField2 = document.getElementById("input2").value;
+    var inputField3 = document.getElementById("input3").value;
+    var inputField4 = document.getElementById("input4").value;
+    var inputField5 = document.getElementById("input5").value;
+    var inputField6 = document.getElementById("input6").value;
+    var inp1=document.getElementById("inputField").value;
+    var inp2=document.getElementById("inputField2").value;
+    var inp3=document.getElementById("inputField3").value;
+    var inp4=document.getElementById("inputField4").value;
+    var inp5=document.getElementById("inputField5").value;
+    var inp6=document.getElementById("inputField6").value;
+    var inp7=document.getElementById("inputField7").value;
+    var inp8=document.getElementById("aciklama").value;
+    var tarih = document.getElementById("tarih").value;
+    var seriNo = document.getElementById("seriNo").value;
+    var checkbox1 = document.getElementById("checkbox1").checked;
+    var checkbox2 = document.getElementById("checkbox2").checked;
+    var checkbox3 = document.getElementById("checkbox3").checked;
+    var checkbox4 = document.getElementById("checkbox4").checked;
+
+    var formData = {
+      input1: inputField1,
+      input2: inputField2,
+      input3: inputField3,
+      input4: inputField4,
+      input5: inputField5,
+      input6: inputField6,
+      inputf1:inp1,
+      inputf2:inp2,
+      inputf3:inp3,
+      inputf4:inp4,
+      inputf5:inp5,
+      inputf6:inp6,
+      inputf7:inp7,
+      inputf8:inp8,
+      tarih: tarih,
+      seriNo: seriNo,
+      checkbox1: checkbox1,
+      checkbox2: checkbox2,
+      checkbox3: checkbox3,
+      checkbox4: checkbox4,
+      signature1: signatureData1,
+      signature2: signatureData2
+    };
+
+    fetch('http://localhost:8081/api/v1', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+            .then(response => response.json())
+
+            .then(data => {
+              console.log('Success:', data);
+              console.log("form data:",formData);
+
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+  }
+
+  // ---------------------------------------------------------
+  var canvas1 = document.getElementById("signatureCanvas1");
+  var ctx1 = canvas1.getContext("2d");
+  var drawing1 = false;
+
+  var canvas2 = document.getElementById("signatureCanvas2");
+  var ctx2 = canvas2.getContext("2d");
+  var drawing2 = false;
+
+  canvas1.addEventListener("mousedown", function (e) {
+    drawing1 = true;
+    ctx1.lineWidth = 2;
+    ctx1.lineCap = "round";
+    ctx1.beginPath();
+    var rect = canvas1.getBoundingClientRect();
+    ctx1.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+  });
+
+  canvas1.addEventListener("mousemove", function (e) {
+    if (!drawing1) return;
+    var rect = canvas1.getBoundingClientRect();
+    ctx1.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+    ctx1.stroke();
+  });
+
+  canvas1.addEventListener("mouseup", function () {
+    drawing1 = false;
+  });
+
+  canvas2.addEventListener("mousedown", function (e) {
+    drawing2 = true;
+    ctx2.lineWidth = 2;
+    ctx2.lineCap = "round";
+    ctx2.beginPath();
+    var rect = canvas2.getBoundingClientRect();
+    ctx2.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+  });
+
+  canvas2.addEventListener("mousemove", function (e) {
+    if (!drawing2) return;
+    var rect = canvas2.getBoundingClientRect();
+    ctx2.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+    ctx2.stroke();
+  });
+
+  canvas2.addEventListener("mouseup", function () {
+    drawing2 = false;
+  });
+
+  document.getElementById("clearButton1").addEventListener("click", function () {
+    ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+  });
+
+  document.getElementById("clearButton2").addEventListener("click", function () {
+    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</html>
